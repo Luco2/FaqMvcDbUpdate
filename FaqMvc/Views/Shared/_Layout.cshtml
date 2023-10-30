@@ -1,0 +1,151 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewBag.Title</title>
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+    <!-- Custom styles -->
+    <style>
+
+        *, html {
+            font-family: system-ui,-apple-system,system-ui,"Segoe UI",Roboto,Ubuntu,"Helvetica Neue",sans-serif;
+        }      
+
+        .header, .footer {
+            background-color: #052641;
+            padding: 5px 5px;
+            text-align: center;
+            /* border-radius: 10px; */
+            margin-bottom: 500px;
+            margin-top: -15px;
+            border: solid 1px #052641;
+        }
+
+        .navbar{
+            background-color: #052641;
+            padding: 5px 5px;
+            text-align: center;
+            /* border-radius: 10px; */
+            border: solid 1px #052641;
+        }
+
+        .nav-link{
+            border: 0;
+            border: 1px solid #052641;
+            background-color: white;
+            border-radius: 0;
+            padding: 10px 20px;
+            font-size: 16px;
+            color: #052641;
+            cursor: pointer;
+            cursor: pointer;
+            display: inline-block;
+            font-size: 18px;
+            font-weight: 600;
+            outline: 0;
+            padding: 16px 21px;
+            position: relative;
+            text-align: center;
+            text-decoration: none;
+            transition: all .3s;
+            user-select: none;
+            -webkit-user-select: none;
+            touch-action: manipulation;
+        }
+
+        .footer{
+            margin-top: 1000 px;
+        }
+       
+
+        h1 {
+            margin-top: -150px;
+            margin-bottom: 350px
+        }   
+        
+        .container mt-4{
+            background-size: cover;
+            background-position: center;
+            margin-left: 5px;
+            background-color: #052641;
+            align-items: center;
+            border: black 1px;
+            border: solid 1px;
+            margin-bottom: -25px;
+            height:50%;
+        }
+
+         a, .ask-ai {
+            border: 0;
+            border: 1px solid #052641;
+            background-color: white;
+            border-radius: 0;
+            padding: 10px 20px;
+            font-size: 16px;
+            color: #052641;
+            cursor: pointer;
+            cursor: pointer;
+            display: inline-block;
+            font-size: 18px;
+            font-weight: 600;
+            outline: 0;
+            padding: 16px 21px;
+            position: relative;
+            text-align: center;
+            text-decoration: none;
+            transition: all .3s;
+            user-select: none;
+            -webkit-user-select: none;
+            touch-action: manipulation;
+        }
+
+        p.rights{
+            border: 1px solid #052641;
+            background-color: white;
+        }
+           
+    </style>
+    <!-- Additional styles, if any -->
+    @RenderSection("Styles", required: false)
+</head>
+<body>
+    <header class="header">
+        <!-- Navigation bar, logo, etc. -->
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <a class="ask-ai" href="/">Ask AI</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/">Home</a>
+                    </li>
+                    <!-- Add other navigation links as needed -->
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <div class="container mt-4">
+        @RenderBody()
+    </div>
+
+    <footer class="footer">
+        <!-- Footer content -->
+        <p class="rights">© 2023 All Rights Reserved.</p>
+    </footer>
+
+    <!-- jQuery and Bootstrap JS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <!-- Additional scripts, if any -->
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

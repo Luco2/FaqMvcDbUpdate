@@ -1,0 +1,28 @@
+﻿@using GptWeb.Models
+@model IEnumerable<UserPrompt>
+
+@{
+    ViewBag.Title = "Question History";
+}
+
+<h1>Question History</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Question</th>
+            <th>Answer</th>
+            <th>DateAsked</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Question</td>
+                <td>@item.Answer</td>
+                <td>@item.DateAsked</td>
+            </tr>
+        }
+    </tbody>
+</table>

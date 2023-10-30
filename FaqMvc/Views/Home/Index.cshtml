@@ -1,0 +1,24 @@
+﻿@using GptWeb.ViewModels;
+@model HomeViewModel
+
+@{
+    ViewBag.Title = "Home";
+}
+
+<h1>@Model.WelcomeMessage</h1>
+
+<!-- Link to the Question page -->
+<p>@Html.ActionLink(" Question", "Question", "Chat")</p>
+
+@if (!User.Identity.IsAuthenticated)
+{
+    <p>@Html.ActionLink("Login", "Login", "Account")</p>
+}
+else
+{
+    <form action="@Url.Action("Logout", "Account")" method="post">
+        @Html.AntiForgeryToken()
+        <button type="submit">Logout</button>
+    </form>
+}
+
