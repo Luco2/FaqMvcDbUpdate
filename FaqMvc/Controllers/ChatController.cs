@@ -1,4 +1,4 @@
-﻿using GptWeb.Data;
+﻿using FaqMvc.Data;
 using GptWeb.Models;
 using GptWeb.Services;
 using Microsoft.AspNetCore.Identity;

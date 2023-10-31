@@ -7,7 +7,6 @@ namespace GptWeb.Models
     {
         [Key]
         public long UserPromptId { get; set; }
-        public long SysUserId { get; set; }
         public string Question { get; set; }
         public string Answer { get; set; }
         public string UserId { get; set; }

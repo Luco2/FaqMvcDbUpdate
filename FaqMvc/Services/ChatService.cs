@@ -1,4 +1,6 @@
-﻿using Newtonsoft.Json;
+﻿using GptWeb.Models;
+using Newtonsoft.Json;
+using System.Net.Http.Headers;
 using System.Text;
 
 namespace GptWeb.Services
@@ -12,20 +14,22 @@ namespace GptWeb.Services
         {
             _httpClient = httpClientFactory.CreateClient();
             _configuration = configuration;
+            InitializeClient();
+        }
+
+        private void InitializeClient()
+        {
+            string apiKey = _configuration["OPENAI_API_KEY"] ?? throw new InvalidOperationException("OpenAI API key not found.");
+            _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", apiKey);
         }
 
         public async Task<string> GetResponse(string prompt)
         {
-            // Check if we should use the mock based on configuration
             var useMockOpenAi = _configuration["USE_MOCK_OPENAI"];
             if (bool.TryParse(useMockOpenAi, out bool shouldUseMock) && shouldUseMock)
             {
                 return GetMockResponse(prompt);
             }
-
-            // Use the real API
-            string apiKey = _configuration["OPENAI_API_KEY"] ?? throw new InvalidOperationException("OpenAI API key not found.");
-            _httpClient.DefaultRequestHeaders.Add("authorization", apiKey);
 
             var content = new StringContent(
                 JsonConvert.SerializeObject(new
@@ -38,20 +42,34 @@ namespace GptWeb.Services
                 Encoding.UTF8, "application/json"
             );
 
-            var response = await _httpClient.PostAsync("https://api.openai.com/v1/engines/davinci/completions", content);
-            var responseString = await response.Content.ReadAsStringAsync();
+            try
+            {
+                var response = await _httpClient.PostAsync("https://api.openai.com/v1/completions", content);
+                if (!response.IsSuccessStatusCode)
+                {
+                    throw new HttpRequestException($"Error {response.StatusCode}: {response.ReasonPhrase}");
+                }
 
-            // Extract the response from the returned JSON
-            dynamic responseData = JsonConvert.DeserializeObject(responseString);
-            string result = responseData.choices[0].text;
+                var responseString = await response.Content.ReadAsStringAsync();
+                var responseData = JsonConvert.DeserializeObject<ChatResponse>(responseString);
+                if (responseData?.Choices?.Count > 0)
+                {
+                    return responseData.Choices[0].Text?.Trim();
+                }
 
-            return result.Trim(); // Return the answer
+                throw new InvalidOperationException("No response text found from OpenAI.");
+            }
+            catch (Exception ex)
+            {
+                // Consider logging the exception
+                throw new InvalidOperationException("An error occurred while fetching response from OpenAI.", ex);
+            }
         }
 
         private string GetMockResponse(string prompt)
         {
-            // Return a mocked response based on the prompt.      
             return "Mocked: " + prompt;
         }
     }
+
 }
