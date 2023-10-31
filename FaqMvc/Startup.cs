@@ -1,4 +1,5 @@
 ﻿using FaqMvc.Data;
+using GptWeb.Models;
 using GptWeb.Services;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -23,9 +24,9 @@ namespace GptWeb
                     Configuration.GetConnectionString("DefaultConnection")));
 
             // Configuring Identity
-            services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+            services.AddDefaultIdentity<UserModel>(options => options.SignIn.RequireConfirmedAccount = true)
                     .AddEntityFrameworkStores<AppDbContext>();
-
+                
             // Adding controllers with views and Razor Pages
             services.AddControllersWithViews();
             services.AddRazorPages();

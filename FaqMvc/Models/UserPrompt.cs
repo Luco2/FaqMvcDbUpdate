@@ -10,9 +10,7 @@ namespace GptWeb.Models
         public string Question { get; set; }
         public string Answer { get; set; }
         public string UserId { get; set; }
-        public IdentityUser User { get; set; }
+        public UserModel User { get; set; } // Changed to UserModel
         public DateTime DateAsked { get; set; }
     }
-
-
 }

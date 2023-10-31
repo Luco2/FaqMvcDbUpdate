@@ -10,9 +10,9 @@ namespace GptWeb.Controllers
     {
         private readonly ChatService _chatService;
         private readonly AppDbContext _dbContext;
-        private readonly UserManager<IdentityUser> _userManager;
+        private readonly UserManager<UserModel> _userManager;  // Updated to UserModel
 
-        public ChatController(ChatService chatService, AppDbContext dbContext, UserManager<IdentityUser> userManager )
+        public ChatController(ChatService chatService, AppDbContext dbContext, UserManager<UserModel> userManager)
         {
             _chatService = chatService;
             _dbContext = dbContext;
@@ -41,7 +41,7 @@ namespace GptWeb.Controllers
                 Question = prompt,
                 Answer = answer,
                 UserId = user.Id,
-                User = user,
+                User = user,  // user is already UserModel type due to UserManager<UserModel>
                 DateAsked = DateTime.Now
             };
 

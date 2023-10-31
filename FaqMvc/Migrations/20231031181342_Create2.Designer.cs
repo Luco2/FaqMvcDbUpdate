@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace GptWeb.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20231031180519_Create")]
-    partial class Create
+    [Migration("20231031181342_Create2")]
+    partial class Create2
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
