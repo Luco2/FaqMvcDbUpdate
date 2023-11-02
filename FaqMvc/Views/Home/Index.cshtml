@@ -7,18 +7,21 @@
 
 <h1>@Model.WelcomeMessage</h1>
 
-<!-- Link to the Question page -->
-<p>@Html.ActionLink(" Question", "Question", "Chat")</p>
+<!-- Link to the 
+
+
+page -->
+@Html.ActionLink("Question", "Question", "Chat", null, new { @class = "btn btn-link" })
 
 @if (!User.Identity.IsAuthenticated)
 {
-    <p>@Html.ActionLink("Login", "Login", "Account")</p>
+@Html.ActionLink("Login", "Login", "Account", null, new { @class = "btn btn-link" })
 }
 else
 {
     <form action="@Url.Action("Logout", "Account")" method="post">
         @Html.AntiForgeryToken()
-        <button type="submit">Logout</button>
+        <button type="btn">Logout</button>
     </form>
 }
 
