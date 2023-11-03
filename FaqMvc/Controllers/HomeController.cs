@@ -1,5 +1,6 @@
 ﻿using FaqMvc.Data; 
 using GptWeb.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace GptWeb.Controllers
@@ -13,7 +14,7 @@ namespace GptWeb.Controllers
         {
             _dbContext = dbContext;
         }
-
+        [Authorize]
         public ActionResult Index()
         {
             var viewModel = new HomeViewModel
