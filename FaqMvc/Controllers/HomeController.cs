@@ -1,20 +1,28 @@
-﻿using GptWeb.ViewModels;
+﻿using FaqMvc.Data; 
+using GptWeb.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 
 namespace GptWeb.Controllers
 {
     public class HomeController : Controller
     {
-        public IActionResult Index()
+        private readonly AppDbContext _dbContext; // Create a field for the dbContext
+
+        // Inject the dbContext into the controller's constructor
+        public HomeController(AppDbContext dbContext)
         {
-            HomeViewModel model = new HomeViewModel
+            _dbContext = dbContext;
+        }
+
+        public ActionResult Index()
+        {
+            var viewModel = new HomeViewModel
             {
-                WelcomeMessage = "Welcome to our Chatbot!"
-                // ... populate other properties as needed
+                WelcomeMessage = "Your Welcome Message Here",
+                UserPrompts = _dbContext.UserPrompts.ToList()
             };
 
-            return View(model);
+            return View(viewModel);
         }
     }
-
 }

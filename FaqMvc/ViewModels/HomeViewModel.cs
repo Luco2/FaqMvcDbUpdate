@@ -1,9 +1,10 @@
-﻿namespace GptWeb.ViewModels
+﻿using GptWeb.Models;
+
+namespace GptWeb.ViewModels
 {
     public class HomeViewModel
     {
         public string WelcomeMessage { get; set; }
-        // ... other properties as needed
+        public IEnumerable<UserPrompt> UserPrompts { get; set; }
     }
-
 }

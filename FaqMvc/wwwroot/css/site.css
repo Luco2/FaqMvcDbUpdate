@@ -1,50 +1,98 @@
-﻿body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #f5f5f5;
+﻿
+/**, html {
+    font-family: system-ui,-apple-system,system-ui,"Segoe UI",Roboto,Ubuntu,"Helvetica Neue",sans-serif;
 }
 
-.container {
-    max-width: 1200px;
-    margin: 0 auto;
-    background-color: #fff;
-    padding: 20px;
+.header, .footer {
+    background-color: #052641;
+    padding: 10px 5px;*/ /* Reduced padding for compact look */
+    /*text-align: center;
+    margin-bottom: 0px;*/ /* Adjusted margin */
+    /*border: solid 1px #052641;
 }
+
+
+.nav-link {
+    background-color: white;
+    padding: 8px 16px;
+    font-size: 16px;
+    color: #052641;
+    cursor: pointer;
+    display: inline-block;
+    font-weight: 600;
+    text-align: center;
+    text-decoration: none;
+    transition: all .3s;
+}
+
+.nav nav-link {
+    border: 1px solid
+}
+
+.footer {
+    margin-top: 750px;*/ /* Adjusted margin */
+/*}
 
 .navbar {
-    background-color: #0066cc;
-    color: white;
-    padding: 10px 0;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    background-color: #052641;
+    padding: 10px 20px;
+    font-size: 16px;
+    color: #052641;
+    cursor: pointer;
+    cursor: pointer;
+    display: inline-block;
+    font-size: 18px;
+    font-weight: 600;
+    outline: 0;
+    padding: 16px 21px;
+    position: relative;
+    text-align: center;
+    text-decoration: none;
+    transition: all .3s;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
 }
 
-    .navbar a {
-        color: white;
-        margin: 0 20px;
-        text-decoration: none;
+.container mt-4{
+            background-size: cover;
+            background-position: center;
+            margin-left: 5px;
+            background-color: #052641;
+            align-items: center;
+            border: black 1px;
+            border: solid 1px;
+            height:1000%;
+        } 
+
+.btn {
+    background-color: #f5f5f5;*/ /* Light gray background */
+    /*border: 1px solid #d4d4d4;*/ /* Slight border to give it some depth */
+    /*border-radius: 5px;*/ /* Rounded corners */
+    /*padding: 8px 16px;*/ /* Padding around text */
+    /*font-family: Arial, sans-serif;*/ /* Use Arial font, but you can choose another font or remove this line to use the default font */
+    /*font-size: 14px;*/ /* Font size of the text */
+    /*cursor: pointer;*/ /* Changes the cursor to a hand when hovering over the button */
+    /*transition: background-color 0.3s;*/ /* Smooth transition for hover effect */
+    /*text-decoration: none !important;
+}
+
+    .btn:hover {
+        background-color: #e0e0e0;*/ /* Slight change in hover color */
+        /*box-shadow: #052641 0 3px 15px inset, rgba(0, 0, 0, .1) 0 3px 5px, rgba(0, 0, 0, .1) 0 10px 13px;
+        transform: scale(1.05);
     }
 
-.column {
-    float: left;
-    padding: 15px;
-}
-
-.left, .right {
-    width: 25%;
-}
-
-.middle {
-    width: 50%;
-}
+.navbar .nav-link .btn-link .btn {
+    text-decoration: none !important;
+    color: black
+}*/
 
 .modal-btn {
     position: fixed;
     bottom: 30px;
     right: 30px;
-    background-color: #28a745;
+    background-color: #052641;
     color: white;
     border: none;
     border-radius: 50%;

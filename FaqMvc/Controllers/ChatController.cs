@@ -48,13 +48,13 @@ namespace GptWeb.Controllers
             _dbContext.UserPrompts.Add(userPrompt);
             await _dbContext.SaveChangesAsync();
 
-            return RedirectToAction("History");
+            return RedirectToAction("Index", "Home");
         }
 
-        public IActionResult History()
-        {
-            var questionsAndAnswers = _dbContext.UserPrompts.ToList();
-            return View(questionsAndAnswers);
-        }
+        //public IActionResult History()
+        //{
+        //    var questionsAndAnswers = _dbContext.UserPrompts.ToList();
+        //    return View(questionsAndAnswers);
+        //}
     }
 }

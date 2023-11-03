@@ -1,4 +1,5 @@
-﻿@using GptWeb.ViewModels
+﻿@using GptWeb.Models
+@using GptWeb.ViewModels
 @model HomeViewModel
 
 @{
@@ -7,21 +8,26 @@
 
 <h1>@Model.WelcomeMessage</h1>
 
-<!-- Link to the 
+@* <!-- Link to the Question page -->
+<p>@Html.ActionLink(" Question", "Question", "Chat")</p> *@
 
+<table class="table">
+    <thead>
+        <tr>
+            <th>Question</th>
+            <th>Answer</th>
+            <th>DateAsked</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.UserPrompts)
+        {
+            <tr>
+                <td>@item.Question</td>
+                <td>@item.Answer</td>
+                <td>@item.DateAsked</td>
+            </tr>
+        }
+    </tbody>
+</table>
 
-page -->
-
-@if (!User.Identity.IsAuthenticated)
-{
-@Html.ActionLink("Login", "Login", "Account", null, new { @class = "btn btn-link" })
-}
-else
-{
-    <form action="@Url.Action("Logout", "Account")" method="post">
-        @Html.AntiForgeryToken()
-        <button type="btn">Logout</button>
-    </form>
-}
-
-<!-- ... rest of your home page ... -->
