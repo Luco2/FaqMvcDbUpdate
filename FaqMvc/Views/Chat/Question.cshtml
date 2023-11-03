@@ -4,10 +4,16 @@
 
 <h1>Ask a Question</h1>
 
-<form method="post" action="@Url.Action("AskQuestion", "Chat")">
+@using (Html.BeginForm("AskQuestion", "Chat", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
     <div class="form-group">
         <label for="prompt" class="your-question">Your Question:</label>
-        <input type="text" class="form-control" id="prompt" name="prompt" required />
+        <input type="text" class="form-control" id="prompt" name="prompt" required
+               placeholder="Type your question here..." aria-describedby="questionHelp" />
+        <small id="questionHelp" class="form-text text-muted">Please make sure your question is clear and concise.</small>
     </div>
-    <button type="submit" class="btn">Submit</button>
-</form>
+    <button type="submit" class="btn btn-primary">Submit</button>
+    <a href="@Url.Action("Index", "Home")" class="btn btn-default">Cancel</a>
+}

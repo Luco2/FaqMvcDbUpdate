@@ -6,153 +6,70 @@
     <title>@ViewBag.Title</title>
 
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-
-    <!-- Custom styles -->
-    <style>
-
-        *, html {
-            font-family: system-ui,-apple-system,system-ui,"Segoe UI",Roboto,Ubuntu,"Helvetica Neue",sans-serif;
-            color: black;
-        }
-
-        /* .header, .footer {
-            background-color: #052641;
-            padding: 1em;
-            text-align: center;
-            border-radius: 10px;
-            margin-bottom: 5em;
-            border: solid 1px #052641;
-        } */
-
-        .header{
-            background-size: cover;
-            background-position: center;
-            background-color: #052641;
-            align-items: center;
-            border: 1px solid black;
-        }
-
-        .footer {
-            background-color: #052641;
-            padding: 1em;
-            text-align: center;
-            border: solid 1px #052641;
-        }
-
-        .nav-link {
-            border: 1px solid #052641;
-            border-radius: 0;
-            padding: 1em 1.3em;
-            font-size: 1.1em;
-            cursor: pointer;
-            display: inline-block;
-            text-decoration: none;
-            transition: all .3s;
-            user-select: none;
-            color: black;
-            background-color: white;
-        }
-
-        #navbarNav {
-            padding: 1em 1.3em;
-            font-size: 1.1em;
-            text-decoration: none;
-            color: black;
-        }
-
-        h1 {
-            margin-top: 0em;
-            margin-bottom: 10.1em;
-        }
-
-        .container.mt-4 {
-            background-size: cover;
-            background-position: center;
-            align-items: center;
-            border: 1px solid black;
-            margin-top: -100em;
-            margin-bottom: 18.2em;
-        }
-
-        .btn{
-            background-color: #f5f5f5;
-            border: 1px solid #d4d4d4;
-            border-radius: 5px;
-            padding: 0.5em 1em;
-            font-family: Arial, sans-serif;
-            font-size: 1em;
-            cursor: pointer;
-            transition: background-color 0.3s;
-            text-decoration: none;
-            color: black;
-        }
-
-        .link {
-            background-color: transparent;
-            border: 1px solid black;
-            border-radius: 5px;
-            padding: 0.5em 1em;
-            font-family: Arial, sans-serif;
-            font-size: 1em;
-            cursor: pointer;
-            transition: background-color 0.3s;
-            text-decoration: none;
-            color: black;
-        }
-
-        .nav-link a{
-            background-color: white;
-        }
-
-        .btn:hover, .nav-link:hover {
-                box-shadow: gray, rgba(0, 0, 0, .1) 0 3px 5px, rgba(0, 0, 0, .1) 0 10px 13px;
-                transform: scale(1.05);
-                color: black;
-                text-decoration: none;
-            }
-
-        .link:hover {
-            color: black;
-            text-decoration: none;
-        }
-
-        /* .btn, .nav-link, .link {
-            text-decoration: none;
-            color: black;
-            border: 1px black;           
-           
-        } */
-
-        .rights {
-            color:white;
-        }
-
-    </style>
+    @* <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"> *@
+    <link rel="stylesheet" href="~/css/modal.css">
+    <link rel="stylesheet" href="~/css/site.css">
 
     <!-- Additional styles, if any -->
     @RenderSection("Styles", required: false)
 </head>
 <body>
+       <!-- Modal -->
+    <div class="modal fade show" id="universalModal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" data-backdrop="static" aria-hidden="false">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <!-- Modal content here -->
+                    @{
+                        ViewBag.Title = "Ask a Question";
+                    }
+
+                    <h1>Ask a Question</h1>
+
+                    @using (Html.BeginForm("AskQuestion", "Chat", FormMethod.Post))
+                    {
+                        @Html.AntiForgeryToken()
+
+                        <div class="form-group">
+                            <label for="prompt" class="your-question">Your Question:</label>
+                            <input type="text" class="form-control" id="prompt" name="prompt" required
+                                   placeholder="Type your question here..." aria-describedby="questionHelp" />
+                            <small id="questionHelp" class="form-text text-muted">Please make sure your question is clear and concise.</small>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                        <a href="@Url.Action("Index", "Home")" class="btn btn-default">Cancel</a>
+                    }
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <!-- Other buttons or links can be added here if needed -->
+                </div>
+            </div>
+        </div>
+    </div>
     <header class="header">
         <!-- Navigation bar, logo, etc. -->
         <nav class="navbar">
             <div id="navbarNav">
-                <ul >
-                    <li class="nav-link">
-                        <a class="nav-link link" href="/">Home</a>
-                        @Html.ActionLink("Question", "Question", "Chat", null, new { @class = "nav-link link" })
-
+                <ul>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        @Html.ActionLink("Question", "Question", "Chat", null, new { @class = "nav-link" })
+                    </li>
+                    <li class="nav-item">
                         @if (!User.Identity.IsAuthenticated)
                         {
-                            @Html.ActionLink("Login", "Login", "Account", null, new { @class = "nav-link link" })
+                            @Html.ActionLink("Login", "Login", "Account", null, new { @class = "nav-link" })
                         }
                         else
                         {
-                            <form action="@Url.Action("Logout", "Account")" method="post">
+                            using (Html.BeginForm("Logout", "Account", FormMethod.Post, new { id = "logoutForm" }))
+                            {
                                 @Html.AntiForgeryToken()
-                                <button type="btn">Logout</button>
-                            </form>
+                                <a href="javascript:document.getElementById('logoutForm').submit()" class="nav-link">Logout</a>
+                            }
                         }
                     </li>
                     <!-- Add other navigation links as needed -->
@@ -160,12 +77,12 @@
             </div>
         </nav>
     </header>
-
     <div class="container mt-4">
         @RenderBody()
     </div>
 
     <footer class="footer">
+        <button type="button" class="modal-btn" onclick="showModal()">?</button>
         <!-- Footer content -->
         <p class="rights">© 2023 All Rights Reserved.</p>
     </footer>
@@ -174,6 +91,17 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <script>
+        function showModal() {
+            var modal = document.querySelector(".modal");
+            if (modal.style.display === "none") {
+                modal.style.display = "block";
+            } else {
+                modal.style.display = "none";
+            }
+        }
+    </script>
 
     <!-- Additional scripts, if any -->
     @RenderSection("Scripts", required: false)

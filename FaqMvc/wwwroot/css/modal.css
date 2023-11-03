@@ -1,0 +1,109 @@
+﻿/* Modal Styles */
+.modal-content {
+    background-color: #fefefe;
+    border: 1px solid #888;
+    border-radius: 5px; /* Rounded corners */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Shadow effect */
+    height: 100%;
+}
+
+.modal-header,
+.modal-footer {
+    padding: 1rem;
+    border-bottom: 1px solid #e5e5e5;
+    background-color: #f7f7f7; /* Light grey background */
+}
+
+.modal-header {
+    border-top-left-radius: 5px; /* Rounded top corners */
+    border-top-right-radius: 5px;
+}
+
+.modal-title {
+    margin: 0;
+    line-height: 1.5;
+}
+
+.modal-body {
+    position: relative;
+    padding: 1rem;
+}
+
+.modal-footer {
+    border-top: 1px solid #e5e5e5;
+    border-bottom-right-radius: 5px; /* Rounded bottom corners */
+    border-bottom-left-radius: 5px;
+    text-align: right; /* Align buttons to the right */
+}
+
+.close {
+    float: none; /* Override Bootstrap styles */
+    font-size: 1.4rem;
+    font-weight: 700;
+    line-height: 1;
+    color: #000;
+    text-shadow: 0 1px 0 #fff;
+    opacity: .5;
+}
+
+    .close:hover,
+    .close:focus {
+        color: #000;
+        text-decoration: none;
+        opacity: .75;
+    }
+
+/* Button styles for modal */
+.btn {
+    padding: .375rem .75rem;
+    margin: .375rem;
+    border-radius: .25rem;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.btn-primary {
+    color: #fff;
+    background-color: #007bff;
+    border-color: #007bff;
+}
+
+.btn-secondary {
+    color: #fff;
+    background-color: #6c757d;
+    border-color: #6c757d;
+}
+
+.btn-default {
+    color: #333;
+    background-color: #fff;
+    border-color: #ccc;
+}
+
+/* Make the modal appear at the bottom right corner */
+.modal {
+    display: none;
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
+    z-index: 1050;
+    width: 300px; /* Width of the modal */
+    max-width: 95%; /* Maximum width on smaller screens */
+    margin: 0;
+    border-radius: 10px; /* Rounded corners */
+}
+
+.modal.fade .modal-dialog {
+        transform: none; /* Remove the default Bootstrap fade in effect */
+    }
+
+.modal-dialog {
+    max-width: 100%; /* Takes the full width */
+    width: auto; /* Adjusts width based on content, can set to fixed value if needed */
+    height: 100vh; /* Full viewport height */
+    margin: 0; /* Removes any margins */
+}
+
+.modal-backdrop {
+    display: none; /* Remove the default Bootstrap backdrop */
+}
