@@ -10,8 +10,10 @@ namespace GptWeb.Services
         private readonly HttpClient _httpClient;
         private readonly IConfiguration _configuration;
         private readonly string _fineTunedModelName;
+        private readonly ILogger<FineTunedChatService> _logger;
 
-        public FineTunedChatService(IHttpClientFactory httpClientFactory, IConfiguration configuration)
+
+        public FineTunedChatService(IHttpClientFactory httpClientFactory, IConfiguration configuration, ILogger<FineTunedChatService> logger)
         {
             _httpClient = httpClientFactory.CreateClient();
             _configuration = configuration;
@@ -19,6 +21,7 @@ namespace GptWeb.Services
             _fineTunedModelName = _configuration["FineTunedModelName"] ?? throw new InvalidOperationException("Fine-tuned model name not configured.");
 
             InitializeClient();
+            _logger = logger;
         }
 
         private void InitializeClient()
@@ -29,6 +32,8 @@ namespace GptWeb.Services
 
         public async Task<string> GetResponse(string prompt)
         {
+            _logger.LogInformation($"Fetching response for prompt: {prompt} using model: {_fineTunedModelName}");
+
             var content = new StringContent(
                 JsonConvert.SerializeObject(new
                 {
@@ -45,6 +50,7 @@ namespace GptWeb.Services
                 var response = await _httpClient.PostAsync("https://api.openai.com/v1/completions", content);
                 if (!response.IsSuccessStatusCode)
                 {
+                    _logger.LogError($"Error {response.StatusCode}: {response.ReasonPhrase}");
                     throw new HttpRequestException($"Error {response.StatusCode}: {response.ReasonPhrase}");
                 }
 
@@ -59,7 +65,7 @@ namespace GptWeb.Services
             }
             catch (Exception ex)
             {
-                // Consider logging the exception here
+                _logger.LogError(ex, "An error occurred while fetching response from the fine-tuned OpenAI model.");
                 throw new InvalidOperationException("An error occurred while fetching response from the fine-tuned OpenAI model.", ex);
             }
         }

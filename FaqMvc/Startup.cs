@@ -34,6 +34,8 @@ namespace GptWeb
             // Additional configurations as needed...
             services.AddHttpClient();
             services.AddTransient<ChatService>();
+
+            services.AddMemoryCache();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

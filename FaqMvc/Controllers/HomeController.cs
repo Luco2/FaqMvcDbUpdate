@@ -18,7 +18,7 @@ namespace GptWeb.Controllers
         {
             var viewModel = new HomeViewModel
             {
-                WelcomeMessage = "Your Welcome Message Here",
+                Data = "Data",
                 UserPrompts = _dbContext.UserPrompts.ToList()
             };
 
