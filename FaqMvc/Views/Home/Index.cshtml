@@ -7,9 +7,21 @@
 
 <h1>@Model.WelcomeMessage</h1>
 
-<!-- Link or button to open the modal -->
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#universalModal">
-    Open Modal
-</button>
+<!-- Link to the 
+
+
+page -->
+
+@if (!User.Identity.IsAuthenticated)
+{
+@Html.ActionLink("Login", "Login", "Account", null, new { @class = "btn btn-link" })
+}
+else
+{
+    <form action="@Url.Action("Logout", "Account")" method="post">
+        @Html.AntiForgeryToken()
+        <button type="btn">Logout</button>
+    </form>
+}
 
 <!-- ... rest of your home page ... -->
