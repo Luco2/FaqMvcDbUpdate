@@ -11,17 +11,5 @@
 
 
 page -->
-@Html.ActionLink("Question", "Question", "Chat", null, new { @class = "btn btn-link" })
 
-@if (!User.Identity.IsAuthenticated)
-{
-@Html.ActionLink("Login", "Login", "Account", null, new { @class = "btn btn-link" })
-}
-else
-{
-    <form action="@Url.Action("Logout", "Account")" method="post">
-        @Html.AntiForgeryToken()
-        <button type="btn">Logout</button>
-    </form>
-}
 

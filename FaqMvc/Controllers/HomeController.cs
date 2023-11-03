@@ -9,7 +9,7 @@ namespace GptWeb.Controllers
         {
             HomeViewModel model = new HomeViewModel
             {
-                WelcomeMessage = "Welcome to our Chatbot!"
+                WelcomeMessage = ""
                 // ... populate other properties as needed
             };
 
