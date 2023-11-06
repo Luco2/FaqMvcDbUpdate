@@ -2,9 +2,9 @@
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
-namespace GptWeb.Data
+namespace FaqMvc.Data
 {
-    public class AppDbContext : IdentityDbContext
+    public class AppDbContext : IdentityDbContext<UserModel> // Changed to UserModel
     {
         public AppDbContext(DbContextOptions<AppDbContext> options)
             : base(options)
@@ -17,16 +17,11 @@ namespace GptWeb.Data
         {
             base.OnModelCreating(builder);
 
-            builder.Entity<UserPrompt>().HasKey(up => up.UserPromptId);
-
-            // Define relationship between UserPrompt and IdentityUser
+            // Define the foreign key relationship between UserPrompt and UserModel
             builder.Entity<UserPrompt>()
-                   .HasOne(up => up.User)
-                   .WithMany()
-                   .HasForeignKey(up => up.UserId)
-                   .OnDelete(DeleteBehavior.Cascade)
-                   .IsRequired();
+                .HasOne<UserModel>(up => up.User) // Changed to UserModel
+                .WithMany(u => u.UserPrompts) // Added the navigation property
+                .HasForeignKey(up => up.UserId);
         }
-
     }
 }

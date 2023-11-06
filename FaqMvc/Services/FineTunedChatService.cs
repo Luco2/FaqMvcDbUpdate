@@ -5,16 +5,23 @@ using System.Text;
 
 namespace GptWeb.Services
 {
-    public class ChatService
+    public class FineTunedChatService
     {
         private readonly HttpClient _httpClient;
         private readonly IConfiguration _configuration;
+        private readonly string _fineTunedModelName;
+        private readonly ILogger<FineTunedChatService> _logger;
 
-        public ChatService(IHttpClientFactory httpClientFactory, IConfiguration configuration)
+
+        public FineTunedChatService(IHttpClientFactory httpClientFactory, IConfiguration configuration, ILogger<FineTunedChatService> logger)
         {
             _httpClient = httpClientFactory.CreateClient();
             _configuration = configuration;
+
+            _fineTunedModelName = _configuration["FineTunedModelName"] ?? throw new InvalidOperationException("Fine-tuned model name not configured.");
+
             InitializeClient();
+            _logger = logger;
         }
 
         private void InitializeClient()
@@ -25,19 +32,15 @@ namespace GptWeb.Services
 
         public async Task<string> GetResponse(string prompt)
         {
-            var useMockOpenAi = _configuration["USE_MOCK_OPENAI"];
-            if (bool.TryParse(useMockOpenAi, out bool shouldUseMock) && shouldUseMock)
-            {
-                return GetMockResponse(prompt);
-            }
+            _logger.LogInformation($"Fetching response for prompt: {prompt} using model: {_fineTunedModelName}");
 
             var content = new StringContent(
                 JsonConvert.SerializeObject(new
                 {
-                    model = "text-davinci-002",
+                    model = _fineTunedModelName,
                     prompt = prompt,
-                    temperature = 1,
-                    max_tokens = 100
+                    temperature = 0.7, // You might want to fine-tune this parameter as well
+                    max_tokens = 150 // Adjust according to your need
                 }),
                 Encoding.UTF8, "application/json"
             );
@@ -47,6 +50,7 @@ namespace GptWeb.Services
                 var response = await _httpClient.PostAsync("https://api.openai.com/v1/completions", content);
                 if (!response.IsSuccessStatusCode)
                 {
+                    _logger.LogError($"Error {response.StatusCode}: {response.ReasonPhrase}");
                     throw new HttpRequestException($"Error {response.StatusCode}: {response.ReasonPhrase}");
                 }
 
@@ -61,15 +65,9 @@ namespace GptWeb.Services
             }
             catch (Exception ex)
             {
-                // Consider logging the exception
-                throw new InvalidOperationException("An error occurred while fetching response from OpenAI.", ex);
+                _logger.LogError(ex, "An error occurred while fetching response from the fine-tuned OpenAI model.");
+                throw new InvalidOperationException("An error occurred while fetching response from the fine-tuned OpenAI model.", ex);
             }
         }
-
-        private string GetMockResponse(string prompt)
-        {
-            return "Mocked: " + prompt;
-        }
     }
-
 }

@@ -1,8 +1,9 @@
-﻿using GptWeb.Data;
+﻿using FaqMvc.Data;
 using GptWeb.Models;
 using GptWeb.Services;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Caching.Memory;
 
 namespace GptWeb.Controllers
 {
@@ -10,13 +11,15 @@ namespace GptWeb.Controllers
     {
         private readonly ChatService _chatService;
         private readonly AppDbContext _dbContext;
-        private readonly UserManager<IdentityUser> _userManager;
+        private readonly UserManager<UserModel> _userManager;
+        private readonly IMemoryCache _cache;
 
-        public ChatController(ChatService chatService, AppDbContext dbContext, UserManager<IdentityUser> userManager )
+        public ChatController(ChatService chatService, AppDbContext dbContext, UserManager<UserModel> userManager,IMemoryCache cache)
         {
             _chatService = chatService;
             _dbContext = dbContext;
             _userManager = userManager;
+            _cache = cache;
         }
 
         public IActionResult Question()
@@ -27,7 +30,20 @@ namespace GptWeb.Controllers
         [HttpPost]
         public async Task<IActionResult> AskQuestion(string prompt)
         {
-            var answer = await _chatService.GetResponse(prompt);
+            // Check cache for a previously stored answer
+            if (!_cache.TryGetValue(prompt, out string answer))
+            {
+                // If not in cache, get from API
+                answer = await _chatService.GetResponse(prompt);
+
+                // Store in cache with an expiration time (you can adjust this duration)
+                var cacheEntryOptions = new MemoryCacheEntryOptions
+                {
+                    AbsoluteExpirationRelativeToNow = TimeSpan.FromHours(1)
+                };
+
+                _cache.Set(prompt, answer, cacheEntryOptions);
+            }
 
             var user = await _userManager.GetUserAsync(HttpContext.User);
             if (user == null)
@@ -41,20 +57,14 @@ namespace GptWeb.Controllers
                 Question = prompt,
                 Answer = answer,
                 UserId = user.Id,
-                User = user,
+                User = user,  // user is already UserModel type due to UserManager<UserModel>
                 DateAsked = DateTime.Now
             };
 
             _dbContext.UserPrompts.Add(userPrompt);
             await _dbContext.SaveChangesAsync();
 
-            return RedirectToAction("History");
-        }
-
-        public IActionResult History()
-        {
-            var questionsAndAnswers = _dbContext.UserPrompts.ToList();
-            return View(questionsAndAnswers);
+            return RedirectToAction("Index", "Home");
         }
     }
 }
