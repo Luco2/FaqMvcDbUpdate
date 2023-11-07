@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "bplj5fNr+scfacpCLzmn7PY5XvzBIrmSR2s3JPfQAGkstBAjL9fG6pbzImFS0n/ORoua0fPTPVurak+HTgf7wg==",
+  "dgSpecHash": "AzulqRUTlPL9eemZl6O1uA/z3EVnuk7g7jUO5x0NmDcxRt36mTYUyzcFuPPsW4lwRxnbpseRqLHULbrVEBkvsg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\LAC\\Paradigm\\FaqMvc\\FaqMvc\\GptWeb.csproj",
+  "projectFilePath": "C:\\Users\\LAC\\Paradigm\\FaqMvcSql\\FaqMvc\\GptWeb.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\LAC\\.nuget\\packages\\azure.core\\1.25.0\\azure.core.1.25.0.nupkg.sha512",
     "C:\\Users\\LAC\\.nuget\\packages\\azure.identity\\1.7.0\\azure.identity.1.7.0.nupkg.sha512",

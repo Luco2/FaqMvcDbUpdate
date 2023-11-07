@@ -3671,11 +3671,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\LAC\\Paradigm\\FaqMvc\\FaqMvc\\GptWeb.csproj",
+      "projectUniqueName": "C:\\Users\\LAC\\Paradigm\\FaqMvcSql\\FaqMvc\\GptWeb.csproj",
       "projectName": "GptWeb",
-      "projectPath": "C:\\Users\\LAC\\Paradigm\\FaqMvc\\FaqMvc\\GptWeb.csproj",
+      "projectPath": "C:\\Users\\LAC\\Paradigm\\FaqMvcSql\\FaqMvc\\GptWeb.csproj",
       "packagesPath": "C:\\Users\\LAC\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\LAC\\Paradigm\\FaqMvc\\FaqMvc\\obj\\",
+      "outputPath": "C:\\Users\\LAC\\Paradigm\\FaqMvcSql\\FaqMvc\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
