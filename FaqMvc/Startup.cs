@@ -1,7 +1,7 @@
 ﻿using FaqMvc.Data;
 using GptWeb.Models;
 using GptWeb.Services;
-using Microsoft.AspNetCore.Identity;
+using GptWeb.Services.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
 namespace GptWeb
@@ -33,7 +33,24 @@ namespace GptWeb
 
             // Additional configurations as needed...
             services.AddHttpClient();
-            services.AddTransient<ChatService>();
+            services.AddScoped<IChatService>(provider =>
+            {
+                var configuration = provider.GetRequiredService<IConfiguration>();
+                bool useMock = bool.Parse(Configuration["USE_MOCK_OPENAI"]);
+
+                if (useMock)
+                {
+                    return new MockChatService(configuration, provider.GetRequiredService<ILogger<MockChatService>>());
+                }
+                else
+                {
+                    return new FineTunedChatService(
+                        provider.GetRequiredService<IHttpClientFactory>(),
+                        configuration,
+                        provider.GetRequiredService<ILogger<FineTunedChatService>>()
+                    );
+                }
+            });
 
             services.AddMemoryCache();
         }

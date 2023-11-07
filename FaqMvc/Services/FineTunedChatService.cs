@@ -1,11 +1,12 @@
 ﻿using GptWeb.Models;
+using GptWeb.Services.Interfaces;
 using Newtonsoft.Json;
 using System.Net.Http.Headers;
 using System.Text;
 
 namespace GptWeb.Services
 {
-    public class FineTunedChatService
+    public class FineTunedChatService : IChatService
     {
         private readonly HttpClient _httpClient;
         private readonly IConfiguration _configuration;
@@ -18,7 +19,7 @@ namespace GptWeb.Services
             _httpClient = httpClientFactory.CreateClient();
             _configuration = configuration;
 
-            _fineTunedModelName = _configuration["FineTunedModelName"] ?? throw new InvalidOperationException("Fine-tuned model name not configured.");
+            _fineTunedModelName = _configuration["OPENAI_MODEL_ID"] ?? throw new InvalidOperationException("Fine-tuned model name not configured.");
 
             InitializeClient();
             _logger = logger;
@@ -39,7 +40,7 @@ namespace GptWeb.Services
                 {
                     model = _fineTunedModelName,
                     prompt = prompt,
-                    temperature = 0.7, // You might want to fine-tune this parameter as well
+                    temperature = 0, // You might want to fine-tune this parameter as well
                     max_tokens = 150 // Adjust according to your need
                 }),
                 Encoding.UTF8, "application/json"

@@ -1,5 +1,7 @@
 ﻿using GptWeb.Controllers;
 using GptWeb.Models;
+using GptWeb.Services.Interfaces;
+using GptWeb.Services;
 using GptWeb.ViewModels;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
@@ -13,16 +15,18 @@ namespace YourAppNamespace.Controllers
     {
         private readonly UserManager<UserModel> _userManager;
         private readonly SignInManager<UserModel> _signInManager;
-        private readonly ILogger _logger;
+        private readonly ILogger<AccountController> _logger;
+        private readonly IChatService _chatService;
 
         public AccountController(
             UserManager<UserModel> userManager,
             SignInManager<UserModel> signInManager,
-            ILogger<AccountController> logger)
+            ILogger<AccountController> logger, IChatService chatService)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _logger = logger;
+            _chatService = chatService;
         }
 
         [HttpGet]
