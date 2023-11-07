@@ -1,0 +1,30 @@
+﻿@using GptWeb.Models
+@using GptWeb.ViewModels
+@model HomeViewModel
+
+@{
+    ViewBag.Title = "Questions";
+}
+
+<h1>@Model.Data</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Question</th>
+            <th>Answer</th>
+            <th>Date Asked</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.UserPrompts)
+        {
+            <tr>
+                <td>@item.Question</td>
+                <td>@item.Answer</td>
+                <td>@item.DateAsked</td>
+            </tr>
+        }
+    </tbody>
+</table>
+

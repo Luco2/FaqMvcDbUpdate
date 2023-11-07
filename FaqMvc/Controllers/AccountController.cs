@@ -112,7 +112,7 @@ namespace YourAppNamespace.Controllers
         {
             await _signInManager.SignOutAsync();
             _logger.LogInformation("User logged out.");
-            return RedirectToAction(nameof(HomeController.Index), "Home");
+            return RedirectToAction(nameof(FaqController.Index), "Home");
         }
 
         private void AddErrors(IdentityResult result)
@@ -131,7 +131,7 @@ namespace YourAppNamespace.Controllers
             }
             else
             {
-                return RedirectToAction(nameof(HomeController.Index), "Home");
+                return RedirectToAction(nameof(FaqController.Index), "Home");
             }
         }
     }

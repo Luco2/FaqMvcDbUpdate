@@ -1,6 +1,4 @@
-﻿@using GptWeb.Models
-@using GptWeb.ViewModels
-@model HomeViewModel
+﻿@model GptWeb.ViewModels.HomeViewModel
 
 @{
     ViewBag.Title = "Home";
@@ -8,23 +6,29 @@
 
 <h1>@Model.Data</h1>
 
-<table class="table">
-    <thead>
-        <tr>
-            <th>Question</th>
-            <th>Answer</th>
-            <th>Date Asked</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model.UserPrompts)
-        {
+@if (Model.Faqs != null && Model.Faqs.Any())
+{
+    <table class="table">
+        <thead>
             <tr>
-                <td>@item.Question</td>
-                <td>@item.Answer</td>
-                <td>@item.DateAsked</td>
+                <th>Question</th>
+                <th>Answer</th>
+                <th>Date Asked</th>
             </tr>
-        }
-    </tbody>
-</table>
-
+        </thead>
+        <tbody>
+            @foreach (var faq in Model.Faqs)
+            {
+                <tr>
+                    <td>@faq.Question</td>
+                    <td>@faq.Answer</td>
+                    <td>@faq.DateAsked.ToString("d")</td> <!-- Assuming DateAsked is a DateTime -->
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <p>No FAQs available.</p>
+}
