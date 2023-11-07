@@ -12,7 +12,8 @@ namespace FaqMvc.Data
         }
 
         public DbSet<UserPrompt> UserPrompts { get; set; }
-        public DbSet<FeeInfo> Fees { get; set; } // Assuming FeeInfo is your custom class for fees
+        public DbSet<FeeInfo> Fees { get; set; }
+        public DbSet<Faq> Faqs { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {

@@ -32,13 +32,14 @@ namespace GptWeb.Controllers
         [HttpPost]
         public async Task<IActionResult> AskQuestion(string prompt)
         {
+
             var user = await _userManager.GetUserAsync(HttpContext.User);
             if (user == null)
             {
                 return Forbid(); 
             }
 
-            string answer = await GetStructuredResponse(prompt) ?? await GetOpenEndedResponse(prompt);
+            string answer = await GetFaqResponse(prompt) ?? await GetStructuredResponse(prompt) ?? await GetOpenEndedResponse(prompt);
 
             var userPrompt = new UserPrompt
             {
@@ -92,6 +93,16 @@ namespace GptWeb.Controllers
             }
 
             return answer;
+        }
+
+        private async Task<string> GetFaqResponse(string prompt)
+        {
+            // Search for a FAQ with a question that matches the prompt closely
+            // You might need to use full-text search or similar techniques for better matching
+            var faq = await _dbContext.Faqs
+                        .FirstOrDefaultAsync(f => f.Question.Contains(prompt));
+
+            return faq?.Answer;
         }
     }
 }
