@@ -33,7 +33,6 @@ namespace GptWeb
 
             // Additional configurations as needed...
             services.AddHttpClient();
-            services.AddScoped<IFaqService, FaqService>();
             services.AddScoped<IChatService>(provider =>
             {
                 var configuration = provider.GetRequiredService<IConfiguration>();
