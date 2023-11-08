@@ -1,0 +1,44 @@
+﻿<!-- Modal -->
+<div class="modal fade" id="universalModal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" data-backdrop="static" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                <!-- Modal content here -->
+                @{
+                    ViewBag.Title = "Ask a Question";
+                }
+
+                <h1>Ask a Question</h1>
+
+                @using (Html.BeginForm("AskQuestion", "Chat", FormMethod.Post))
+                {
+                    @Html.AntiForgeryToken()
+
+                    <div class="form-group">
+                        <label for="prompt" class="your-question">Your Question:</label>
+                        <input type="text" class="form-control" id="prompt" name="prompt" required
+                               placeholder="Type your question here..." aria-describedby="questionHelp" />
+                        <small id="questionHelp" class="form-text text-muted">Please make sure your question is clear and concise.</small>
+                    </div>
+                    <div>
+                        Common questions:
+                    </div>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <a href="@Url.Action("Index", "Home")" class="btn btn-default">Cancel</a>
+                }
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <!-- Other buttons or links can be added here if needed -->
+            </div>
+        </div>
+    </div>
+</div>
+
+<button class="modal-btn" onclick="showModal()">?</button>
+
+<script>
+    function showModal() {
+        $("#universalModal").modal('show');
+    }
+</script>

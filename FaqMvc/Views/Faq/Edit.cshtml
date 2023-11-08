@@ -1,0 +1,27 @@
+﻿@model GptWeb.Models.Faq
+
+@{
+    ViewData["Title"] = "Edit FAQ";
+}
+
+<h2>@ViewData["Title"]]</h2>
+
+<form asp-action="Edit">
+    <div class="form-group">
+        <label asp-for="Question" class="control-label"></label>
+        <input asp-for="Question" class="form-control" />
+        <span asp-validation-for="Question" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Answer" class="control-label"></label>
+        <input asp-for="Answer" class="form-control" />
+        <span asp-validation-for="Answer" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <input type="submit" value="Save" class="btn btn-primary" />
+    </div>
+</form>
+
+<div>
+    <a href="@Url.Action("FaqList", "Faq")">Back to List</a>
+</div>

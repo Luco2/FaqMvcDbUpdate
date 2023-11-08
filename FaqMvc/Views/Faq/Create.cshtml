@@ -1,0 +1,17 @@
+﻿@model GptWeb.Models.Faq
+
+<form asp-action="Create">
+    <div class="form-group">
+        <label asp-for="Question" class="control-label"></label>
+        <input asp-for="Question" class="form-control" />
+        <span asp-validation-for="Question" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Answer" class="control-label"></label>
+        <input asp-for="Answer" class="form-control" />
+        <span asp-validation-for="Answer" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <input type="submit" value="Create" class="btn btn-primary" />
+    </div>
+</form>

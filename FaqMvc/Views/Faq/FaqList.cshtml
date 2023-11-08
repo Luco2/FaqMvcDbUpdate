@@ -1,0 +1,44 @@
+﻿@using GptWeb.Models
+@using GptWeb.ViewModels
+@model HomeViewModel
+
+@{
+    ViewData["Title"] = "FAQ List";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<a asp-action="Create" asp-controller="Faq" class="btn btn-primary">Add New FAQ</a>
+
+@if (!Model.Faqs.Any())
+{
+    <p>No FAQs to display.</p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Question</th>
+                <th>Answer</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var faq in Model.Faqs)
+            {
+                <tr>
+                    <td>@faq.Id</td>
+                    <td>@faq.Question</td>
+                    <td>@faq.Answer</td>
+                    <td>
+                        <a asp-action="Details" asp-route-id="@faq.Id" class="nav-link">Details</a>
+                        <a asp-action="Edit" asp-route-id="@faq.Id" class="nav-link">Edit</a>
+                        <a asp-action="Delete" asp-route-id="@faq.Id" class="nav-link">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}

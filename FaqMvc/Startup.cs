@@ -26,13 +26,14 @@ namespace GptWeb
             // Configuring Identity
             services.AddDefaultIdentity<UserModel>(options => options.SignIn.RequireConfirmedAccount = true)
                     .AddEntityFrameworkStores<AppDbContext>();
-                
+
             // Adding controllers with views and Razor Pages
             services.AddControllersWithViews();
             services.AddRazorPages();
 
             // Additional configurations as needed...
             services.AddHttpClient();
+            services.AddScoped<IFaqService, FaqService>();
             services.AddScoped<IChatService>(provider =>
             {
                 var configuration = provider.GetRequiredService<IConfiguration>();
