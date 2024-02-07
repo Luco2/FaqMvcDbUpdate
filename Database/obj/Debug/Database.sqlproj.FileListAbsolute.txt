@@ -1,0 +1,10 @@
+C:\Users\LAC\source\C#\FaqMvc11142023\Database\bin\Debug\Database.dacpac
+C:\Users\LAC\source\C#\FaqMvc11142023\Database\bin\Debug\Database.dll
+C:\Users\LAC\source\C#\FaqMvc11142023\Database\bin\Debug\Database.pdb
+C:\Users\LAC\source\C#\FaqMvc11142023\Database\obj\Debug\Database.sqlproj.AssemblyReference.cache
+C:\Users\LAC\source\C#\FaqMvc11142023\Database\obj\Debug\Model.xml
+C:\Users\LAC\source\C#\FaqMvc11142023\Database\obj\Debug\refactor.xml
+C:\Users\LAC\source\C#\FaqMvc11142023\Database\obj\Debug\postdeploy.sql
+C:\Users\LAC\source\C#\FaqMvc11142023\Database\obj\Debug\predeploy.sql
+C:\Users\LAC\source\C#\FaqMvc11142023\Database\obj\Debug\Database.dll
+C:\Users\LAC\source\C#\FaqMvc11142023\Database\obj\Debug\Database.pdb
