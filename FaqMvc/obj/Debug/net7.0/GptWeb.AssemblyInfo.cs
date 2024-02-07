@@ -16,7 +16,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("GptWeb")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+a97b6773239eed64bf0743efedbdfe610b1b1c39")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+30e46924186b99c9748c6c774eb29341db24e0e8")]
 [assembly: System.Reflection.AssemblyProductAttribute("GptWeb")]
 [assembly: System.Reflection.AssemblyTitleAttribute("GptWeb")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
