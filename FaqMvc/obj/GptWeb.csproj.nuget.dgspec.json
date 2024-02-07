@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\LAC\\source\\C#\\FaqMvcVue - Copy\\FaqMvc\\GptWeb.csproj": {}
+    "C:\\Users\\LAC\\source\\C#\\FaqMvcGit\\FaqMvc\\GptWeb.csproj": {}
   },
   "projects": {
-    "C:\\Users\\LAC\\source\\C#\\FaqMvcVue - Copy\\FaqMvc\\GptWeb.csproj": {
+    "C:\\Users\\LAC\\source\\C#\\FaqMvcGit\\FaqMvc\\GptWeb.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\LAC\\source\\C#\\FaqMvcVue - Copy\\FaqMvc\\GptWeb.csproj",
+        "projectUniqueName": "C:\\Users\\LAC\\source\\C#\\FaqMvcGit\\FaqMvc\\GptWeb.csproj",
         "projectName": "GptWeb",
-        "projectPath": "C:\\Users\\LAC\\source\\C#\\FaqMvcVue - Copy\\FaqMvc\\GptWeb.csproj",
+        "projectPath": "C:\\Users\\LAC\\source\\C#\\FaqMvcGit\\FaqMvc\\GptWeb.csproj",
         "packagesPath": "C:\\Users\\LAC\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\LAC\\source\\C#\\FaqMvcVue - Copy\\FaqMvc\\obj\\",
+        "outputPath": "C:\\Users\\LAC\\source\\C#\\FaqMvcGit\\FaqMvc\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
