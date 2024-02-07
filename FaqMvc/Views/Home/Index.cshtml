@@ -1,12 +1,15 @@
 ﻿@using GptWeb.Models
 @using GptWeb.ViewModels
+@using Microsoft.AspNetCore.Mvc.Localization
 @model HomeViewModel
+@inject IViewLocalizer Localizer
 
 @{
     ViewBag.Title = "Home";
 }
 
-<h1>@Model.Data</h1>
+<h2>@Localizer["Data"]</h2>
+
 
 <table class="table">
     <thead>

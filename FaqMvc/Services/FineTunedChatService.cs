@@ -40,8 +40,8 @@ namespace GptWeb.Services
                 {
                     model = _fineTunedModelName,
                     prompt = prompt,
-                    temperature = 0, // You might want to fine-tune this parameter as well
-                    max_tokens = 150 // Adjust according to your need
+                    temperature = 0, 
+                    max_tokens = 150 
                 }),
                 Encoding.UTF8, "application/json"
             );

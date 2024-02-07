@@ -45,12 +45,10 @@ namespace GptWeb.Services
             }
         }
 
-        public async Task<bool> FaqExists(int id)
+        public async Task<bool> FaqExists(int id) 
         {
             return await _dbContext.Faqs.AnyAsync(e => e.Id == id);
         }
-
-        // ... 
 
     }
 }

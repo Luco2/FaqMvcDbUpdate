@@ -1,8 +1,3 @@
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
-using System;
-
 namespace GptWeb
 {
     public class Program
@@ -23,7 +18,6 @@ namespace GptWeb
                     logging.ClearProviders();
                     logging.AddConsole();
                     logging.AddDebug();
-                    // Add additional providers as needed
                 });
     }
 }

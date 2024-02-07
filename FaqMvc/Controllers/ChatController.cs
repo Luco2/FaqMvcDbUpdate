@@ -86,7 +86,7 @@ namespace GptWeb.Controllers
 
                 var cacheEntryOptions = new MemoryCacheEntryOptions
                 {
-                    AbsoluteExpirationRelativeToNow = TimeSpan.FromHours(1) // For example, 1 hour
+                    AbsoluteExpirationRelativeToNow = TimeSpan.FromHours(1) 
                 };
 
                 _cache.Set(prompt, answer, cacheEntryOptions);
@@ -97,8 +97,6 @@ namespace GptWeb.Controllers
 
         private async Task<string> GetFaqResponse(string prompt)
         {
-            // Search for a FAQ with a question that matches the prompt closely
-            // You might need to use full-text search or similar techniques for better matching
             var faq = await _dbContext.Faqs
                         .FirstOrDefaultAsync(f => f.Question.Contains(prompt));
 

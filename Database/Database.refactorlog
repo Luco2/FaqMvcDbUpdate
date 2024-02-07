@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Operations Version="1.0" xmlns="http://schemas.microsoft.com/sqlserver/dac/Serialization/2012/02">
+  <Operation Name="Rename Refactor" Key="8dd14e0d-e822-445f-9991-8ba1821859e0" ChangeDateTime="02/06/2024 21:57:47">
+    <Property Name="ElementName" Value="[dbo].[AspNetRoles]" />
+    <Property Name="ElementType" Value="SqlTable" />
+    <Property Name="ParentElementName" Value="[dbo]" />
+    <Property Name="ParentElementType" Value="SqlSchema" />
+    <Property Name="NewName" Value="Role" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="b646978a-8b31-41e3-92a3-9409135049b0" ChangeDateTime="02/06/2024 21:58:46">
+    <Property Name="ElementName" Value="[dbo].[Role]" />
+    <Property Name="ElementType" Value="SqlTable" />
+    <Property Name="ParentElementName" Value="[dbo]" />
+    <Property Name="ParentElementType" Value="SqlSchema" />
+    <Property Name="NewName" Value="[Role]" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="79c1d9d8-c753-4aaf-ab2b-ca4ef5177d1c" ChangeDateTime="02/06/2024 22:04:04">
+    <Property Name="ElementName" Value="[dbo].[AspNetUsers]" />
+    <Property Name="ElementType" Value="SqlTable" />
+    <Property Name="ParentElementName" Value="[dbo]" />
+    <Property Name="ParentElementType" Value="SqlSchema" />
+    <Property Name="NewName" Value="[Users]" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="89c1fad4-dc05-4f6b-a703-58f583294d4e" ChangeDateTime="02/06/2024 22:23:05">
+    <Property Name="ElementName" Value="[dbo].[Users]" />
+    <Property Name="ElementType" Value="SqlTable" />
+    <Property Name="ParentElementName" Value="[dbo]" />
+    <Property Name="ParentElementType" Value="SqlSchema" />
+    <Property Name="NewName" Value="[AspNetUsers]" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="0bd9e9eb-02e0-46db-9f09-814ad213e29d" ChangeDateTime="02/06/2024 22:23:40">
+    <Property Name="ElementName" Value="[dbo].[Role]" />
+    <Property Name="ElementType" Value="SqlTable" />
+    <Property Name="ParentElementName" Value="[dbo]" />
+    <Property Name="ParentElementType" Value="SqlSchema" />
+    <Property Name="NewName" Value="[AspNetRoles]" />
+  </Operation>
+</Operations>

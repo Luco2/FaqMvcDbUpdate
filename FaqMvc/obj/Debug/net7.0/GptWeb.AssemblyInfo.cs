@@ -12,10 +12,11 @@ using System;
 using System.Reflection;
 
 [assembly: Microsoft.AspNetCore.Identity.UI.UIFrameworkAttribute("Bootstrap5")]
+[assembly: Microsoft.Extensions.Configuration.UserSecrets.UserSecretsIdAttribute("d94bfea7-4ac6-4730-9ad8-442764d0d3cc")]
 [assembly: System.Reflection.AssemblyCompanyAttribute("GptWeb")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+a97b6773239eed64bf0743efedbdfe610b1b1c39")]
 [assembly: System.Reflection.AssemblyProductAttribute("GptWeb")]
 [assembly: System.Reflection.AssemblyTitleAttribute("GptWeb")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

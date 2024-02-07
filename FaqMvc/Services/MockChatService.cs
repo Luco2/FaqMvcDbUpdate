@@ -1,4 +1,7 @@
-﻿using GptWeb.Services.Interfaces;
+﻿using FaqMvc.Data;
+using GptWeb.Models;
+using GptWeb.Services.Interfaces;
+using Microsoft.EntityFrameworkCore;
 
 namespace GptWeb.Services
 {
@@ -40,5 +43,6 @@ namespace GptWeb.Services
                 return "Mocked response for an open-ended question related to: " + prompt;
             }
         }
+
     }
 }

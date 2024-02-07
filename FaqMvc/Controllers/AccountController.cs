@@ -33,7 +33,6 @@ namespace YourAppNamespace.Controllers
         [AllowAnonymous]
         public async Task<IActionResult> Login(string returnUrl = null)
         {
-            // Clear the existing external cookie
             await HttpContext.SignOutAsync(IdentityConstants.ExternalScheme);
 
             return RedirectToPage("/Account/Login", new { area = "Identity" });
@@ -95,7 +94,6 @@ namespace YourAppNamespace.Controllers
                 {
                     _logger.LogInformation("User created a new account with password.");
 
-                    // For more information on how to enable account confirmation and password reset, visit https://aka.ms/aspnetcore_identity_enable_confirm
                     await _signInManager.SignInAsync(user, isPersistent: false);
                     return RedirectToLocal(returnUrl);
                 }

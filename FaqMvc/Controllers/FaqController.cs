@@ -1,12 +1,14 @@
-﻿using GptWeb.Models;
+﻿using Abp.Web.Mvc.Models;
+using GptWeb.Models;
 using GptWeb.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System.Diagnostics;
 
 namespace GptWeb.Controllers
 {
-    //[Authorize(Roles = "Admin")] // Ensure only admins can access
+    //[Authorize(Roles = "Admin")] 
     public class FaqController : Controller
     {
         private readonly IFaqService _faqService;
@@ -27,7 +29,7 @@ namespace GptWeb.Controllers
             return View(viewModel);
         }
 
-        // GET: Faq/Details/5
+        // GET: Faq/Details
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -54,6 +56,8 @@ namespace GptWeb.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,Question,Answer")] Faq faq)
         {
+            faq.DateAsked = DateTime.Now;
+
             if (ModelState.IsValid)
             {
                 await _faqService.CreateFaqAsync(faq);
@@ -62,7 +66,7 @@ namespace GptWeb.Controllers
             return View(faq);
         }
 
-        // GET: Faq/Edit/5
+        // GET: Faq/Edit
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -78,7 +82,7 @@ namespace GptWeb.Controllers
             return View(faq);
         }
 
-        // POST: Faq/Edit/5
+        // POST: Faq/Edit
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("Id,Question,Answer")] Faq faq)
@@ -110,7 +114,7 @@ namespace GptWeb.Controllers
             return View(faq);
         }
 
-        // GET: Faq/Delete/5
+        // GET: Faq/Delete
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -126,7 +130,7 @@ namespace GptWeb.Controllers
             return View(faq);
         }
 
-        // POST: Faq/Delete/5
+        // POST: Faq/Delete
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
@@ -134,5 +138,6 @@ namespace GptWeb.Controllers
             await _faqService.DeleteFaqAsync(id);
             return RedirectToAction(nameof(FaqList));
         }
-    }
+        }
+
 }
